@@ -1,7 +1,33 @@
 Перед выполнением заданий важно самостоятельно повторить шаги, выполняемые на уроке.
 
 1) Выяснить какой загрузчик ОС использется в вашей системе.
+grub
+checked /boot/ folder
+
 2) Просмотреть журнал событий ядра.
+dmesg
+cat /var/log/dmesg
+
 3) Изменить носитель по умолчанию, используемый для загрузки ОС.
+For Ubuntu
+grep '^menuentry' /boot/grub/grub.cfg
+This command will list all available boot entries along with their titles. Note the title of the OS you want to set as default.
+
+Open GRUB Configuration File:
+sudo vi /etc/default/grub
+
+Locate and Modify the GRUB_DEFAULT Option:
+Change its value to either the numerical index of the desired boot entry (starting from 0) or the exact title enclosed in quotes.
+
+Update GRUB:
+sudo update-grub
+This command will update the GRUB configuration based on the changes you made.
+
+Reboot Your System:
+sudo reboot
+
 4) Попробовать загрузить ОС в режиме, отличающемся от режима по умолчанию.
+-
+
 5) Узнать какой из стилей инициализации используется в вашей ОС.
+ps -p 1
