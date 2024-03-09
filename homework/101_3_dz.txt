@@ -1,7 +1,24 @@
 Перед выполнением заданий важно самостоятельно повторить шаги, выполняемые на уроке.
 
 1) Изменить режим запуска по умолчанию ОС.
+vi /etc/inittab
+systemctl set-default -f <name>.target
+
 2) Переключиться между несколькими режимами работы.
+runlevel - узнать текущий
+init 1
+telinit 1
+
+systemctl list-units --type=target - узнать текущий
+systemctl isolate <name>.target - Переключиться
+
 3) Убрать из автозапуска по умолчанию службу сети.
+systemctl disable NetworkManager
+
 4) Проверить статус службы аудио.
+service audio status
+systemctl status audio
+
 5) Перезагрузить ПК через работу с уровнями выполнения или таргетами.
+systemctl isolate reboot.target
+telinit 6
