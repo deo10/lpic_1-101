@@ -1,7 +1,20 @@
-Перед выполнением заданий важно самостоятельно повторить шаги, выполняемые на уроке.
+РџРµСЂРµРґ РІС‹РїРѕР»РЅРµРЅРёРµРј Р·Р°РґР°РЅРёР№ РІР°Р¶РЅРѕ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ РїРѕРІС‚РѕСЂРёС‚СЊ С€Р°РіРё, РІС‹РїРѕР»РЅСЏРµРјС‹Рµ РЅР° СѓСЂРѕРєРµ.
 
-1) Добавить в репозитории информацию для работы с пакетом java.
-2) Установить java со всеми зависимостями.
-3) Удалить java.
-4) Установить webmin.
-5) Обновить все пакеты ПО. 
+1) Р”РѕР±Р°РІРёС‚СЊ РІ СЂРµРїРѕР·РёС‚РѕСЂРёРё РёРЅС„РѕСЂРјР°С†РёСЋ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїР°РєРµС‚РѕРј java.
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install openjdk-11-jdk
+2) РЈСЃС‚Р°РЅРѕРІРёС‚СЊ java СЃРѕ РІСЃРµРјРё Р·Р°РІРёСЃРёРјРѕСЃС‚СЏРјРё.
+sudo apt install openjdk-11-jdk
+3) РЈРґР°Р»РёС‚СЊ java.
+sudo apt remove openjdk-11-jdk
+4) РЈСЃС‚Р°РЅРѕРІРёС‚СЊ webmin.
+sudo wget -q http://www.webmin.com/jcameron-key.asc -O- | sudo apt-key add -
+echo "deb http://download.webmin.com/download/repository sarge contrib" | sudo tee /etc/apt/sources.list.d/webmin.list
+sudo apt install webmin
+
+5) РћР±РЅРѕРІРёС‚СЊ РІСЃРµ РїР°РєРµС‚С‹ РџРћ.
+sudo apt update
+sudo apt upgrade
