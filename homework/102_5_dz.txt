@@ -7,9 +7,6 @@ You can add a repository by creating a .repo file in
 sudo yum install epel-release #add repo
 yum search java
 
-
-
-
 2) Установить java со всеми зависимостями.
 sudo yum install java-11-openjdk
 RPM
