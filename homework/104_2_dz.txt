@@ -1,10 +1,34 @@
 Перед выполнением заданий важно самостоятельно повторить шаги, выполняемые на уроке.
 
 1) Установить инструменты работы с NTFS.
+sudo apt-get update
+sudo apt-get install ntfs-3g
+
 2) Отформатировать свободный том в формат NTFS.
+sudo mkfs.ntfs -f /dev/sdX1
+
 3) Проверить том NTFS.
+sudo ntfsfix /dev/sdX1
+
 4) Вывести информацию о томе NTFS в отдельный файл.
+sudo ntfsinfo -m /dev/sdX1 > ntfs_volume_info.txt
+
 5) Попробовать выключить журнал на томе NTFS.
+sudo ntfsfix --clear-log /dev/sdX1
+Note: This command repairs the volume and clears the NTFS log
+but doesn't disable journaling permanently since NTFS journaling is a core feature.
+
 6) Попробовать удалить и восстановить информацию на томе NTFS.
+sudo rm /mnt/ntfs/somefile.txt
+sudo ntfsundelete /dev/sdX1
+In this example, somefile.txt represents a file you deleted.
+Use ntfsundelete for recovering files, and it will list possible files to recover.
+
 7) Посмотреть количество свободного места на этом томе.
+df -h | grep /dev/sdX1
+Ensure your NTFS volume is mounted, e.g., at /mnt/ntfs.
+
 8) Посмотреть занятое место на этом томе.
+du -sh /mnt/ntfs
+This command summarizes the space used by files and directories in the NTFS volume.
+Again, ensure it's mounted properly.

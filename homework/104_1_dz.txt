@@ -1,15 +1,39 @@
 Перед выполнением заданий важно самостоятельно повторить шаги, выполняемые на уроке.
 
 1) Инициализировать новый диск в формате MBR.
+sudo fdisk /dev/sdX
 
 2) Создать на отдельном диске два основных отдела и один расширенный.
+sudo fdisk /dev/sdX
+Inside fdisk:
+Type n, then p for primary, 1 for the partition number, and then specify the size.
+Repeat the above step for the second primary partition.
+Type n, then e for extended, provide the partition number and size.
 
 3) На расширенном разделе создать еще три раздела.
+Inside fdisk:
+Navigate to the extended partition (using t change the type if necessary)
+Type n multiple times to create logical partitions, providing sizes for each.
 
 4) Создать на каждом разделе отдельную файловую систему, один из разделов сделать разделом swap.
+sudo mkfs.ext4 /dev/sdX1
+sudo mkfs.ext4 /dev/sdX2
+sudo mkswap /dev/sdX5
+sudo mkfs.ext4 /dev/sdX6
+sudo mkfs.ext4 /dev/sdX7
 
 5) Переконвертировать диск в формат GUID.
+sudo gdisk /dev/sdX
+Inside gdisk, type x for expert options, then n to create a new empty GUID
+partition table, and then w to write the changes and exit.
 
 6) Удалить расширенный раздел.
+sudo fdisk /dev/sdX
+Inside fdisk, type d, then enter the number of the extended partition,
+ and finally w to write the changes.
 
 7) Увеличить один из оставшихся разделов на освобожденное место.
+sudo fdisk /dev/sdX
+Inside fdisk, delete the partition you want to extend and recreate it with the
+same starting block but a larger ending block.
+Make sure to back up any data before doing this as deleting a partition will erase its data.
