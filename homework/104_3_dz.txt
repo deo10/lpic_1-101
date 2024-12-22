@@ -1,7 +1,38 @@
 Перед выполнением заданий важно самостоятельно повторить шаги, выполняемые на уроке.
 
 1) Создать точку монтирования в корневой файловой системе.
+/mnt - common path for mount
+/media - common path for external drives
+
+sudo mkdir /mnt/hard_drive
+
 2) Вручную подключить в нее устройство и создать на нем текстовый файл, после чего отключить.
+
+sudo mount /dev/sdb1 /mnt/hard_drive
+touch /mnt/text.txt
+sudo unmount /dev/sdb1
+
 3) Создать настройку автоматического монтирования указанной файловой системы.
+cat /etc/fstab - config
+<file system> <mount point> <type> <options>
+or 
+<ID of the device> <mount point> <type> <options>
+UUID /mnt/hard_drive ext2 defaults
+
+sudo blkid /dev/sdb1 - to get UUID
 4) Подключить сетевое устройство в файловую систему.
+sudo mount -t cifs -o username=yourusername,password=yourpassword //servername/sharename /mnt/networkdrive
+
+fstab
+//servername/sharename  /mnt/networkdrive  cifs  username=yourusername,password=yourpassword,iocharset=utf8  0  0
+
 5) Подключить том Windows в файловую систему.
+access the NTFS
+sudo apt install ntfs-3g
+
+mount
+sudo mount -t ntfs-3g /dev/sda1 /mnt/windows
+
+or
+fstab
+/dev/sda1  /mnt/windows  ntfs-3g  defaults  0  0

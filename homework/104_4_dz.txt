@@ -1,7 +1,25 @@
 Перед выполнением заданий важно самостоятельно повторить шаги, выполняемые на уроке.
 
 1) Установить для диска с домашними папками квоту для пользователя системы в 100 Мб мягкую.
+apt-get install quota
+sudo quotacheck -ugm /home
+sudo setquota -u username 100000 100000 0 0 /home
+
+sudo quotaon /mnt/<drive_name>
+
 2) Установить для диска с домашними папками квоту для группы пользователей системы, в которую входит ваш пользователй, в 100 объектов жесткую.
+sudo quotacheck -cug /mnt/hard_drive 
+sudo edquota -g <group_name>
+-> check hard and 100 objects
+
+sudo quotaon /mnt/hard_drive
+
 3) Копируя и вставляя файлы попробовать превысить обе квоты.
+cp: cannot create regular file 'file': Disk quota exceeded
+
 4) Посмотреть отчет об использовании квот.
+quota -u username
+quota -g users
+
 5) Отключить квоту на носителе информации.
+sudo quotaoff /mnt/hard_drive
