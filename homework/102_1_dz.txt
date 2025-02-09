@@ -33,3 +33,19 @@ sudo mount /dev/VG_NAME/LV_NAME /path/to/mount/point #mount
 7) Определить точную версию ядра ОС.
 uname -r
 cat /proc/version
+
+
+8) Create a GPT partition called vdb1 of size 500M on the disk /dev/vdb
+You can install gdisk by running sudo apt install gdisk
+
+sudo gdisk
+-> /dev/vdb
+
+-> n - to create new partition
+Select parition number = 1 (for vdd1)
+Select default first sector = 2048
+Select +500M when asked for last sector
+Use default hex code = 8300
+-> w to write to the partition table
+
+sudo lsblk - to check the results
